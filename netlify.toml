@@ -1,5 +1,13 @@
 # Static site: nothing to build, publish the folder as it stands.
+#
+# `command` is set EXPLICITLY EMPTY, and that is the load-bearing part. Netlify
+# resolves settings by letting netlify.toml win wherever it specifies something
+# and letting the site UI fill whatever it leaves out. This site's UI still
+# carries "npm run build" from the Astro site that stood here before, so an
+# unset command here would quietly inherit it and fail on a repo with no
+# package.json. Saying nothing is not the same as saying nothing to do.
 [build]
+  command = ""
   publish = "."
 
 [[headers]]
@@ -10,3 +18,79 @@
     X-Frame-Options = "DENY"
     Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+
+# ============================================================================
+# THE COMMONS THAT STOOD HERE
+# ----------------------------------------------------------------------------
+# amovera.net carried the Archiome Commons until October 2026. Those URLs are
+# in the wild: indexed by search engines, printed in the kit, and linked from
+# jackneoveris.com. Letting them 404 would be a silent deletion of work that
+# still exists, so the readable half is redirected to an archive of the site as
+# it stood at tag commons-1.0.
+#
+# 301, not 302: the move is permanent and search engines should carry the
+# weight of the old URLs across rather than keep asking.
+#
+# No `force` on any of these. Without it a redirect yields to a real file at
+# the same path, so if the vlog ever grows its own /about/ or /video/, that
+# page wins and the rule quietly retires itself instead of shadowing it.
+# ============================================================================
+
+[[redirects]]
+  from = "/manual/*"
+  to = "https://archiome-commons-archive.netlify.app/manual/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/foundations/*"
+  to = "https://archiome-commons-archive.netlify.app/foundations/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/kit/*"
+  to = "https://archiome-commons-archive.netlify.app/kit/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/deck/*"
+  to = "https://archiome-commons-archive.netlify.app/deck/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/start/*"
+  to = "https://archiome-commons-archive.netlify.app/start/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/metasymbology/*"
+  to = "https://archiome-commons-archive.netlify.app/metasymbology/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/apps/*"
+  to = "https://archiome-commons-archive.netlify.app/apps/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/posters/*"
+  to = "https://archiome-commons-archive.netlify.app/posters/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/video/*"
+  to = "https://archiome-commons-archive.netlify.app/video/:splat"
+  status = 301
+
+# /about/ is the one name both sites want. The vlog says who is speaking on its
+# own page, so the old essay keeps the path rather than competing for it.
+[[redirects]]
+  from = "/about/*"
+  to = "https://archiome-commons-archive.netlify.app/about/:splat"
+  status = 301
+
+# DELIBERATELY NOT REDIRECTED: /submit/, /vote/, /chatroom/, /account/, /login.
+# Those are the write surfaces, and they were retired rather than moved. A
+# redirect would carry someone to a submission form that cannot admit anything
+# and a room nobody is in. They 404 here, which is the honest answer.
+#
+# Also not redirected: /sitemap.xml and /robots.txt, which this site owns.

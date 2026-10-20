@@ -1,0 +1,156 @@
+headersOrigin = "config"
+redirectsOrigin = "config"
+plugins = []
+
+[functions]
+
+[functions."*"]
+
+[build]
+publish = "C:\\Projects\\amovera-vlog"
+publishOrigin = "config"
+commandOrigin = "ui"
+
+[build.environment]
+
+[build.processing]
+
+[build.processing.css]
+
+[build.processing.html]
+
+[build.processing.images]
+
+[build.processing.js]
+
+[build.services]
+
+[[headers]]
+for = "/*"
+
+[headers.values]
+X-Content-Type-Options = "nosniff"
+Referrer-Policy = "strict-origin-when-cross-origin"
+X-Frame-Options = "DENY"
+Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+
+[[redirects]]
+from = "/manual/*"
+to = "https://archiome-commons-archive.netlify.app/manual/:splat"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/foundations/*"
+to = "https://archiome-commons-archive.netlify.app/foundations/:splat"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/kit/*"
+to = "https://archiome-commons-archive.netlify.app/kit/:splat"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/deck/*"
+to = "https://archiome-commons-archive.netlify.app/deck/:splat"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/start/*"
+to = "https://archiome-commons-archive.netlify.app/start/:splat"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/metasymbology/*"
+to = "https://archiome-commons-archive.netlify.app/metasymbology/:splat"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/apps/*"
+to = "https://archiome-commons-archive.netlify.app/apps/:splat"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/posters/*"
+to = "https://archiome-commons-archive.netlify.app/posters/:splat"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/video/*"
+to = "https://archiome-commons-archive.netlify.app/video/:splat"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/about/*"
+to = "https://archiome-commons-archive.netlify.app/about/:splat"
+status = 301.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]

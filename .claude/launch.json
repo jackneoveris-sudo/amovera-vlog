@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "vlog",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "4330", "--directory", "C:/Projects/amovera-vlog"],
+      "port": 4330
+    }
+  ]
+}

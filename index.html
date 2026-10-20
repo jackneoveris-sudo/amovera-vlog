@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Amovera — S.T.A.M.P.</title>
+<meta name="description" content="The S.T.A.M.P. vlog — investigative work and pamphlets from the Amovera system, by Jack of Clubs." />
+<meta name="theme-color" content="#000000" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23000'/%3E%3Ctext x='32' y='46' font-size='40' text-anchor='middle' fill='%23d6dae2'%3E%E2%99%A3%3C/text%3E%3C/svg%3E" />
+
+<!-- No JavaScript? The intro never shows and the page reads normally. -->
+<noscript><style>#intro{display:none !important}</style></noscript>
+</head>
+<body>
+
+<!-- ─────────────────────────────────────────────────────────────────────────
+     THE INTRO. An eclipse: a dark disc over a corona, matching the film.
+     Three beats — Amovera, then S.T.A.M.P., then the Jack of Clubs — which is
+     the order of the thing itself: the system, its investigative instrument,
+     and the office that carries it.
+
+     It is skippable by tap, click or any key, it runs once per visit rather
+     than on every navigation, and it does not run at all for a reader who has
+     asked for reduced motion.
+────────────────────────────────────────────────────────────────────────── -->
+<div id="intro" aria-hidden="true">
+  <div class="eclipse">
+    <div class="corona"></div>
+    <div class="disc"></div>
+  </div>
+  <div class="beats">
+    <span class="beat" data-beat="1">Amovera</span>
+    <span class="beat" data-beat="2">S.T.A.M.P.</span>
+    <span class="beat beat--card" data-beat="3">
+      <svg viewBox="0 0 90 126" width="90" height="126" role="img" aria-label="The Jack of Clubs">
+        <rect x="1.5" y="1.5" width="87" height="123" rx="9"
+              fill="#0a0a0c" stroke="url(#silver)" stroke-width="2"/>
+        <defs>
+          <linearGradient id="silver" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#f2f4f8"/>
+            <stop offset=".5" stop-color="#9aa0ab"/>
+            <stop offset="1" stop-color="#e6e9ef"/>
+          </linearGradient>
+        </defs>
+        <text x="13" y="27" font-size="20" fill="url(#silver)" font-family="Georgia, serif">J</text>
+        <text x="45" y="76" font-size="42" text-anchor="middle" fill="url(#silver)">&#9827;</text>
+        <text x="77" y="112" font-size="20" fill="url(#silver)" font-family="Georgia, serif"
+              transform="rotate(180 77 105)">J</text>
+      </svg>
+    </span>
+  </div>
+  <button id="skip" type="button">Skip</button>
+</div>
+
+<!-- ─────────────────────────── the page ─────────────────────────── -->
+<main id="deck">
+
+  <!-- 1 · masthead -->
+  <section class="panel panel--hero" id="top">
+    <div class="inner">
+      <p class="eyebrow">Jack of Clubs · the investigative office</p>
+      <h1>Amovera<span class="dot">·</span>S.T.A.M.P.</h1>
+      <p class="lede">Sovereign Thought Against Manipulated Politics. The pamphlet work, filmed.</p>
+      <a class="cue" href="#vlog">The entries <span aria-hidden="true">↓</span></a>
+    </div>
+  </section>
+
+  <!-- 2 · the vlog -->
+  <section class="panel" id="vlog">
+    <div class="inner">
+      <h2>The Vlog</h2>
+      <div class="card">
+        <p>Each entry is an investigation: a claim followed where it leads, with the reasoning left in rather than tidied out. New entries are posted here as they are filmed.</p>
+      </div>
+      <div id="posts" class="posts"></div>
+    </div>
+  </section>
+
+  <!-- 3 · the book -->
+  <section class="panel" id="book">
+    <div class="inner">
+      <h2>Creating Ethics</h2>
+      <div class="card">
+        <p><strong>The public root of the system.</strong> A short argument with long consequences: that tolerance is not one virtue among others but a first principle for any mind that takes its own freedom seriously.</p>
+        <p>The full text is free to read — 262 pages, in a reader that works on a phone or a desktop — and free to download and keep. No account, no paywall.</p>
+        <p class="actions">
+          <a class="btn" href="https://jackneoveris.com/creating-ethics.html">Read the book <span aria-hidden="true">→</span></a>
+          <a class="btn btn--quiet" href="https://jackneoveris.com/creating-ethics.pdf">Download the PDF</a>
+        </p>
+        <p class="fine">The book is published on <a href="https://jackneoveris.com/">jackneoveris.com</a>, the author's own site.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · what S.T.A.M.P. is -->
+  <section class="panel" id="stamp">
+    <div class="inner">
+      <h2>What S.T.A.M.P. is</h2>
+      <div class="card">
+        <p><strong>Sovereign Thought Against Manipulated Politics.</strong> It is the investigative and recruitment instrument of the Amovera system, carried in pamphlets and zines &mdash; and now in these films.</p>
+        <p>Its subject is the machinery by which political thought is manufactured, and what a person can do about it from where they already stand.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · who I am -->
+  <section class="panel" id="me">
+    <div class="inner">
+      <h2>Who I am</h2>
+      <div class="card">
+        <p>I am <strong>Jack M. N. Gladstone</strong> &mdash; an independent philosopher and writer in northern British Columbia, author of <em>Creating Ethics</em> and originator of the Amovera system. I am self-educated, and I have kept myself through entry-level work across every level of society. That breadth is not incidental to the philosophy: it is meant to be carried by working people rather than deposited in a discipline.</p>
+        <p>The work is signed <strong>Jack of Suits</strong>, and the figure is fourfold. The <strong>Jack of Diamonds</strong> writes the philosophy. The <strong>Jack of Clubs</strong> &mdash; whose office this is &mdash; writes the investigative work and the pamphlets. The Jack of Spades and the Jack of Hearts hold their own offices, to be disclosed in time. All four names and the legal name are public; the private person behind them is kept deliberately separate.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · what Amovera is -->
+  <section class="panel" id="amovera">
+    <div class="inner">
+      <h2>What Amovera is</h2>
+      <div class="card">
+        <p>A philosophical system built over roughly fifteen years of dialectical work &mdash; by question and counter-question, derivation rather than assertion. Its Master Principle was arrived at rather than posited:</p>
+        <p class="principle">All that persists does so by acquiring what it lacks.</p>
+        <p>Eight frameworks hang from that spine, each the same principle worked out in a different domain of human life. S.T.A.M.P. is one of the eight.</p>
+        <p class="fine">It is not a party and not a programme, and it belongs to no one. The aim is not personal: it is to lay down something another person can carry forward.</p>
+      </div>
+
+      <div class="card card--note">
+        <p><strong>A note on what used to be here.</strong> Until October 2026 this address carried the Archiome Commons &mdash; a field manual of fifty-nine technics with a governance system for admitting more. That work is preserved and is not lost; it is simply no longer the thing this site is for.</p>
+      </div>
+
+      <p class="colophon">
+        Amovera &middot; S.T.A.M.P. &middot; the Jack of Clubs<br />
+        Written works are <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>. Provisional and revisable.<br />
+        <a href="https://jackneoveris.com/">jackneoveris.com</a> &middot; <a href="https://jackneoveris.com/contact.html">Contact</a>
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<nav id="dots" aria-label="Sections"></nav>
+
+<script src="posts.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

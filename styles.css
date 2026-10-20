@@ -1,0 +1,399 @@
+/* ===========================================================================
+   Amovera · S.T.A.M.P.
+   Black, with silver and white accents. Text that is meant to be READ sits in
+   a white box with black ink — the pamphlet logic, carried onto a screen.
+
+   System fonts only: nothing is fetched from anyone else's server to render
+   this page.
+   ======================================================================== */
+
+:root {
+  --black:      #000000;
+  --near:       #0a0a0c;   /* panel black, a shade off true black */
+  --ink:        #111216;   /* text inside the white boxes */
+  --ink-soft:   #44464e;
+  --paper:      #ffffff;
+  --silver:     #c9ced8;
+  --silver-dim: #8d939e;
+  --silver-hi:  #f2f4f8;
+  --rule:       #2a2c33;
+
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --sans:  ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --measure: 62ch;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--black);
+  color: var(--silver);
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ---------------------------------------------------------------------------
+   THE DECK. One page, four panels.
+
+   Mobile gets mandatory snapping, so a thumb swipe lands cleanly on the next
+   panel. Desktop gets proximity snapping instead: mandatory snapping on a
+   mouse wheel fights the reader on any panel taller than the window, and the
+   about panel is taller than the window.
+------------------------------------------------------------------------- */
+#deck {
+  height: 100svh;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+.panel {
+  min-height: 100svh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: flex;
+  align-items: center;
+  padding: 4.5rem 1.25rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.inner { width: 100%; max-width: 48rem; margin: 0 auto; }
+
+@media (min-width: 900px) {
+  #deck { scroll-snap-type: y proximity; }
+  .panel { padding: 5rem 2rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html, #deck { scroll-behavior: auto; }
+  #deck { scroll-snap-type: none; }
+}
+
+/* ------------------------------- type ----------------------------------- */
+.eyebrow {
+  font-family: var(--sans);
+  font-size: .72rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--silver-dim);
+  margin: 0 0 1rem;
+}
+
+h1 {
+  font-family: var(--sans);
+  font-weight: 200;
+  font-size: clamp(2.4rem, 9vw, 5rem);
+  line-height: 1.02;
+  letter-spacing: .01em;
+  margin: 0;
+  background: linear-gradient(100deg, var(--silver-hi), var(--silver-dim) 45%, var(--silver-hi));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+h1 .dot { opacity: .45; margin: 0 .25em; }
+
+h2 {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: clamp(1.6rem, 4.5vw, 2.4rem);
+  letter-spacing: .02em;
+  color: var(--silver-hi);
+  margin: 0 0 1.5rem;
+}
+h2::after {
+  content: "";
+  display: block;
+  width: 3.5rem;
+  height: 1px;
+  margin-top: .9rem;
+  background: linear-gradient(90deg, var(--silver), transparent);
+}
+
+h3 {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 0 0 .7rem;
+}
+
+.lede {
+  font-size: clamp(1.05rem, 2.6vw, 1.3rem);
+  color: var(--silver);
+  max-width: var(--measure);
+  margin: 1.4rem 0 0;
+}
+
+/* --------------------------- the white boxes ---------------------------- */
+.card {
+  background: var(--paper);
+  color: var(--ink);
+  border-radius: 3px;
+  padding: 1.5rem 1.6rem;
+  margin: 0 0 1.1rem;
+  max-width: var(--measure);
+  box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 18px 40px -28px rgba(0,0,0,.9);
+}
+.card p { margin: 0 0 .9rem; }
+.card p:last-child { margin-bottom: 0; }
+.card a { color: var(--ink); text-underline-offset: 2px; }
+
+.card--note { background: #eef0f4; }
+
+.principle {
+  font-family: var(--serif);
+  font-size: 1.22rem;
+  font-style: italic;
+  text-align: center;
+  padding: 1rem 0;
+  border-top: 1px solid #d8dbe2;
+  border-bottom: 1px solid #d8dbe2;
+}
+
+.fine { font-size: .86rem; color: var(--ink-soft); }
+
+/* ------------------------------ controls -------------------------------- */
+.btn {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: .84rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-decoration: none;
+  padding: .7rem 1.2rem;
+  border-radius: 2px;
+  background: var(--ink);
+  color: var(--paper);
+  border: 1px solid var(--ink);
+}
+.btn--quiet { background: transparent; color: var(--ink); }
+.actions { display: flex; gap: .7rem; flex-wrap: wrap; align-items: center; }
+
+.cue {
+  display: inline-block;
+  margin-top: 2.5rem;
+  font-family: var(--sans);
+  font-size: .8rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--silver-dim);
+  text-decoration: none;
+}
+.cue:hover { color: var(--silver-hi); }
+
+/* ------------------------------- posts ---------------------------------- */
+.posts { display: grid; gap: 1rem; max-width: var(--measure); }
+
+.post {
+  display: grid;
+  grid-template-columns: 1fr;
+  background: var(--paper);
+  color: var(--ink);
+  border-radius: 3px;
+  overflow: hidden;
+  text-decoration: none;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.08);
+}
+@media (min-width: 620px) { .post--thumb { grid-template-columns: 15rem 1fr; } }
+
+.post img { width: 100%; height: 100%; object-fit: cover; display: block; background: var(--near); }
+.post .body { padding: 1.2rem 1.4rem; }
+.post .meta {
+  font-family: var(--sans);
+  font-size: .72rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0 0 .4rem;
+}
+.post h3 { text-transform: none; letter-spacing: 0; font-size: 1.12rem; margin: 0 0 .4rem; }
+.post p { margin: 0; font-size: .96rem; }
+
+.empty {
+  background: var(--paper);
+  color: var(--ink);
+  border-radius: 3px;
+  padding: 1.6rem;
+  text-align: center;
+  max-width: var(--measure);
+}
+.empty .mark { font-size: 1.8rem; color: var(--ink-soft); display: block; margin-bottom: .4rem; }
+
+.colophon {
+  font-family: var(--sans);
+  font-size: .76rem;
+  line-height: 1.9;
+  color: var(--silver-dim);
+  margin: 2rem 0 0;
+}
+.colophon a { color: var(--silver); }
+
+/* ------------------------------- dots ----------------------------------- */
+#dots {
+  position: fixed;
+  right: .85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+  z-index: 40;
+}
+#dots a {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid var(--silver-dim);
+  transition: background .25s, transform .25s;
+}
+#dots a.is-active { background: var(--silver-hi); transform: scale(1.35); }
+@media (max-width: 560px) { #dots { right: .5rem; } }
+@media print { #dots, #intro { display: none !important; } }
+
+/* ===========================================================================
+   THE INTRO — an eclipse, three beats, then away.
+   ======================================================================== */
+#intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--black);
+  display: grid;
+  place-items: center;
+  animation: introOut .9s ease-in 5.6s forwards;
+}
+#intro.is-done { animation: none; opacity: 0; visibility: hidden; transition: opacity .45s ease; }
+
+@keyframes introOut { to { opacity: 0; visibility: hidden; } }
+
+.eclipse {
+  position: absolute;
+  width: min(74vmin, 30rem);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+}
+
+.corona {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%,
+      rgba(255,246,228,.95) 0%,
+      rgba(255,214,150,.55) 42%,
+      rgba(190,120,60,.28) 55%,
+      rgba(0,0,0,0) 72%);
+  animation: bloom 5.6s ease-in-out forwards;
+}
+
+/* The moon: pure black, sitting just off-centre so a rim of corona survives. */
+.disc {
+  position: absolute;
+  width: 68%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #000;
+  transform: translate(-3%, -2%);
+  animation: transit 5.6s linear forwards;
+}
+
+@keyframes bloom {
+  0%   { opacity: 0; transform: scale(.82); }
+  18%  { opacity: 1; transform: scale(1); }
+  82%  { opacity: 1; transform: scale(1.02); }
+  100% { opacity: 0; transform: scale(1.1); }
+}
+@keyframes transit {
+  0%   { transform: translate(-16%, -8%); }
+  100% { transform: translate(6%, 3%); }
+}
+
+.beats { position: relative; z-index: 2; display: grid; place-items: center; }
+
+.beat {
+  grid-area: 1 / 1;
+  opacity: 0;
+  font-family: var(--sans);
+  font-weight: 200;
+  font-size: clamp(2rem, 8vw, 3.6rem);
+  letter-spacing: .08em;
+  color: #eaf7f1;
+  text-shadow: 0 0 28px rgba(0,0,0,.85), 0 0 6px rgba(0,0,0,.7);
+  white-space: nowrap;
+}
+/* The teal of the film's captions, kept for continuity with it. */
+.beat[data-beat="2"] { color: #7fe0c0; letter-spacing: .14em; }
+.beat--card { filter: drop-shadow(0 0 22px rgba(0,0,0,.9)); }
+
+.beat[data-beat="1"] { animation: beat 2.1s ease-in-out  .25s forwards; }
+.beat[data-beat="2"] { animation: beat 2.1s ease-in-out 2.00s forwards; }
+.beat[data-beat="3"] { animation: beat 2.0s ease-in-out 3.75s forwards; }
+
+@keyframes beat {
+  0%   { opacity: 0; transform: translateY(.5rem) scale(.98); }
+  22%  { opacity: 1; transform: translateY(0) scale(1); }
+  72%  { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(-.4rem) scale(1.01); }
+}
+
+#skip {
+  position: absolute;
+  bottom: 1.6rem; right: 1.6rem;
+  font-family: var(--sans);
+  font-size: .74rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--silver-dim);
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: .5rem .9rem;
+  cursor: pointer;
+}
+#skip:hover { color: var(--silver-hi); border-color: var(--silver-dim); }
+
+/* A reader who has asked for less motion gets none of it: the page is simply
+   there. The overlay is removed outright rather than animated away. */
+@media (prefers-reduced-motion: reduce) {
+  #intro { display: none; }
+}
+
+/* The card is drawn at 90x126 and scaled here rather than in the markup, so it
+   holds its proportion while taking a share of the frame on any screen. */
+.beat--card svg {
+  width: clamp(5.5rem, 17vmin, 9.5rem);
+  height: auto;
+}
+
+/* `.card a` is a more specific selector than `.btn`, so inside a white box the
+   button text took the card's ink colour and disappeared into its own dark
+   background. Named explicitly: reordering the rules would not have fixed it,
+   because specificity wins over order. */
+.card a.btn        { color: var(--paper); }
+.card a.btn--quiet { color: var(--ink); }
+
+/* SNAPPING THAT CANNOT TRAP A READER.
+   Mandatory snapping is what makes a phone swipe land cleanly on the next
+   panel, and that is the point of the format. But a mandatory container reaches
+   for the NEAREST snap point, so any panel taller than the screen gets dragged
+   back to the one above as the reader tries to read down it. Measured, not
+   assumed: parking the reader 1200px into a 2365px panel pulled them back
+   2012px to the previous panel.
+
+   Two things fix it together. The long section was split into one idea per
+   screen, so no panel carries three screens of reading. And proximity snapping
+   is the floor: a deliberate swipe still lands on the next panel, while a panel
+   that outgrows the screen on some narrower phone can still be read to the end.
+   Crispness is worth a lot; it is not worth a section nobody can reach. */
+#deck { scroll-snap-type: y proximity; }
+.panel { scroll-snap-stop: normal; }

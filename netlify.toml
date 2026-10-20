@@ -1,13 +1,19 @@
-# Static site: nothing to build, publish the folder as it stands.
+# Static site: there is nothing to build — the files here are the website.
 #
-# `command` is set EXPLICITLY EMPTY, and that is the load-bearing part. Netlify
-# resolves settings by letting netlify.toml win wherever it specifies something
-# and letting the site UI fill whatever it leaves out. This site's UI still
-# carries "npm run build" from the Astro site that stood here before, so an
-# unset command here would quietly inherit it and fail on a repo with no
-# package.json. Saying nothing is not the same as saying nothing to do.
+# The command is a real no-op rather than an empty string, and that distinction
+# cost a failed production deploy. Netlify reads `command = ""` as NOT SET, not
+# as "nothing to do", so it fell through to the build command still held in the
+# site UI — "npm run build", left over from the Astro site that stood here —
+# which exited 2 against a repo with no package.json.
+#
+# It looked fixed because `netlify deploy` from a laptop succeeded: the CLI
+# resolves config locally and never consults the UI. Only a build on Netlify's
+# own builders exercises that path, so only a git-triggered deploy could have
+# caught it.
+#
+# A non-empty command wins over the UI outright, and it says so in the build log.
 [build]
-  command = ""
+  command = "echo 'static site: nothing to build'"
   publish = "."
 
 [[headers]]

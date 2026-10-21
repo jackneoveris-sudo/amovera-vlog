@@ -9,13 +9,27 @@
    Each entry looks like this:
 
      {
-       title: "What the entry is called",
-       date:  "2026-11-03",                 // year-month-day
-       length: "14 min",                    // optional, omit the line if unknown
-       url:   "https://...",                // where it plays
-       blurb: "One or two sentences on what it follows.",
-       thumb: "assets/some-image.jpg"       // optional, omit the line if none
+       title:   "What the entry is called",
+       date:    "2026-11-03",               // year-month-day
+       length:  "14 min",                   // optional, omit the line if unknown
+       youtube: "dQw4w9WgXcQ",              // the ID only - see below
+       blurb:   "One or two sentences on what it follows.",
+       thumb:   "assets/some-image.jpg"     // optional, omit the line if none
      },
+
+   FINDING THE YOUTUBE ID. Open the video on YouTube and look at the address:
+
+       https://www.youtube.com/watch?v=dQw4w9WgXcQ
+                                      ^^^^^^^^^^^ this part, nothing else
+
+   Not the whole address, not a share link with "?si=" on the end. Just the ID.
+
+   The video stays off the page until someone presses play: the card shows your
+   own thumbnail, and only a click loads the player. Until then this site makes
+   no request to YouTube at all, and sets none of its cookies.
+
+   If an entry lives somewhere other than YouTube, use `url` instead of
+   `youtube` and the card becomes an ordinary link.
 
    Only `title` and `url` are strictly needed; everything else is optional and
    the page copes with any of it missing.
@@ -26,15 +40,19 @@
 
 const POSTS = [
 
-  // ── Add the newest entry here. An example, left commented out, to copy: ──
-  //
-  // {
-  //   title: "The manufacture of a talking point",
-  //   date:  "2026-11-03",
-  //   length: "14 min",
-  //   url:   "https://jackneoveris.com/watch.html",
-  //   blurb: "One phrase, tracked from the think tank that wrote it to the mouth that repeated it.",
-  //   thumb: "assets/entry-01.jpg"
-  // },
+  // ── Newest first. ────────────────────────────────────────────────────────
+  {
+    title:   "Amovera Origins: Introductions",
+    date:    "2026-10-21",
+    length:  "19 min",
+
+    // PASTE THE YOUTUBE ID BETWEEN THE QUOTES once the video is uploaded.
+    // Until it is filled in, this entry shows as "coming shortly" rather than
+    // as a broken player — so it is safe to publish the page before the upload.
+    youtube: "",
+
+    blurb:   "The first entry. Who is speaking, what Amovera is, and why the argument is being made here rather than in a book nobody opened.",
+    thumb:   "assets/entry-01.jpg"
+  },
 
 ];

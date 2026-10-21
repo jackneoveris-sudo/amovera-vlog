@@ -79,42 +79,122 @@
     });
 
     function render(p) {
-      var a = document.createElement('a');
-      a.className = 'post' + (p.thumb ? ' post--thumb' : '');
-      a.href = p.url || '#';
-      if (/^https?:\/\//i.test(p.url || '')) { a.rel = 'noopener'; }
+      // THREE SHAPES, DECIDED BY WHAT THE ENTRY CARRIES.
+      //   a youtube id  -> a card that becomes a player when clicked
+      //   a url         -> an ordinary link out
+      //   neither       -> the entry, marked as not yet watchable
+      if (p.youtube) return renderVideo(p);
+      return renderLink(p);
+    }
+
+    /* ---------------------------------------------------------------------
+       THE FACADE. A YouTube embed written into the page would contact Google
+       for every visitor who never pressed play, and set its cookies for them
+       too. So nothing of YouTube's is loaded until someone asks: the card
+       shows an image from this site, and the click that means "play" is the
+       click that fetches the player.
+
+       youtube-nocookie.com is the privacy-enhanced host, which is what
+       jackneoveris.com already uses. It is not no-tracking — it is
+       less-tracking, and only once the viewer has chosen to play.
+    --------------------------------------------------------------------- */
+    function renderVideo(p) {
+      var art = document.createElement('article');
+      art.className = 'post post--video';
+
+      var stage = document.createElement('div');
+      stage.className = 'stage';
+
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'facade';
+      btn.setAttribute('aria-label', 'Play: ' + (p.title || 'this entry'));
 
       if (p.thumb) {
         var img = document.createElement('img');
         img.src = p.thumb;
         img.alt = '';
         img.loading = 'lazy';
-        a.appendChild(img);
+        btn.appendChild(img);
       }
+      var play = document.createElement('span');
+      play.className = 'play';
+      play.setAttribute('aria-hidden', 'true');
+      btn.appendChild(play);
 
-      var body = document.createElement('div');
-      body.className = 'body';
+      btn.addEventListener('click', function () {
+        var frame = document.createElement('iframe');
+        frame.src = 'https://www.youtube-nocookie.com/embed/' +
+                    encodeURIComponent(p.youtube) +
+                    '?autoplay=1&rel=0&modestbranding=1';
+        frame.title = p.title || 'Video';
+        frame.allow = 'accelerometer; autoplay; encrypted-media; picture-in-picture; fullscreen';
+        frame.allowFullscreen = true;
+        frame.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+        stage.replaceChild(frame, btn);
+      });
+
+      stage.appendChild(btn);
+      art.appendChild(stage);
+      art.appendChild(body(p, 'https://www.youtube.com/watch?v=' + encodeURIComponent(p.youtube)));
+      return art;
+    }
+
+    function renderLink(p) {
+      // No destination yet: show the entry, say so plainly, and do not pretend
+      // to be a link. An <a> with nowhere to go is worse than a line of text.
+      var el = document.createElement(p.url ? 'a' : 'article');
+      el.className = 'post' + (p.thumb ? ' post--thumb' : '') + (p.url ? '' : ' post--pending');
+      if (p.url) {
+        el.href = p.url;
+        if (/^https?:\/\//i.test(p.url)) el.rel = 'noopener';
+      }
+      if (p.thumb) {
+        var img = document.createElement('img');
+        img.src = p.thumb; img.alt = ''; img.loading = 'lazy';
+        el.appendChild(img);
+      }
+      el.appendChild(body(p, null));
+      return el;
+    }
+
+    function body(p, watchHref) {
+      var box = document.createElement('div');
+      box.className = 'body';
 
       var meta = [fmtDate(p.date), p.length].filter(Boolean).join(' · ');
       if (meta) {
         var m = document.createElement('p');
         m.className = 'meta';
         m.textContent = meta;
-        body.appendChild(m);
+        box.appendChild(m);
       }
 
       var h = document.createElement('h3');
       h.textContent = p.title || 'Untitled entry';
-      body.appendChild(h);
+      box.appendChild(h);
 
       if (p.blurb) {
         var d = document.createElement('p');
         d.textContent = p.blurb;
-        body.appendChild(d);
+        box.appendChild(d);
       }
 
-      a.appendChild(body);
-      return a;
+      if (watchHref) {
+        var a = document.createElement('a');
+        a.className = 'watch-out';
+        a.href = watchHref;
+        a.rel = 'noopener';
+        a.textContent = 'Watch on YouTube →';
+        box.appendChild(a);
+      } else if (!p.url) {
+        var s = document.createElement('p');
+        s.className = 'pending';
+        s.textContent = 'Coming shortly.';
+        box.appendChild(s);
+      }
+
+      return box;
     }
 
     // Dates are written plainly in posts.js. Parsed as UTC on purpose: a bare

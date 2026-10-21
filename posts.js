@@ -46,10 +46,7 @@ const POSTS = [
     date:    "2026-10-21",
     length:  "19 min",
 
-    // PASTE THE YOUTUBE ID BETWEEN THE QUOTES once the video is uploaded.
-    // Until it is filled in, this entry shows as "coming shortly" rather than
-    // as a broken player — so it is safe to publish the page before the upload.
-    youtube: "",
+    youtube: "f4mIFRpZURs",
 
     blurb:   "The first entry. Who is speaking, what Amovera is, and why the argument is being made here rather than in a book nobody opened.",
     thumb:   "assets/entry-01.jpg"

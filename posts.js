@@ -44,6 +44,7 @@ const POSTS = [
   {
     title:   "Amovera Origins: Introduction",
     date:    "2026-10-21",
+    length:  "26 min",
 
     youtube: "v_zdaOGsesM",
 

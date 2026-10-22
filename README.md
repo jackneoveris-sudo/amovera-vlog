@@ -1,6 +1,6 @@
 # Amovera · S.T.A.M.P.
 
-The vlog site. One page: the entries, the book, and who is speaking.
+The vlog site. One page: the entries, the work, and who is speaking.
 
 There is **no build step**. The files here are the website. Edit one, save it,
 and that is the change made.
@@ -36,7 +36,7 @@ To see it before it goes live, open `index.html` in a browser.
 
 | | |
 |---|---|
-| `index.html` | The page itself — all four sections of writing live here |
+| `index.html` | The page itself — all the sections of writing live here |
 | `posts.js`   | **The only file you need for a new entry** |
 | `styles.css` | Colours, type, layout, and the eclipse animation |
 | `app.js`     | Runs the intro, builds the entry list, moves the dots |

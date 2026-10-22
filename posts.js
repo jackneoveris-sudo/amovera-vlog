@@ -41,15 +41,23 @@
 const POSTS = [
 
   // ── Newest first. ────────────────────────────────────────────────────────
-  {
-    title:   "Amovera Origins: Introductions",
-    date:    "2026-10-21",
-    length:  "19 min",
 
-    youtube: "f4mIFRpZURs",
+  // WITHDRAWN 21 Oct 2026. This entry promoted Creating Ethics, which has been
+  // taken off jackneoveris.com, so the video came down with it — the ID below
+  // no longer resolves on YouTube. Kept commented out as the record of what
+  // was here. Delete it once the re-recorded entry is up.
+  //
+  // {
+  //   title:   "Amovera Origins: Introductions",
+  //   date:    "2026-10-21",
+  //   length:  "19 min",
+  //   youtube: "f4mIFRpZURs",
+  //   blurb:   "The first entry. Who is speaking, what Amovera is, and why the argument is being made here rather than in a book nobody opened.",
+  //   thumb:   "assets/entry-01.jpg"
+  // },
 
-    blurb:   "The first entry. Who is speaking, what Amovera is, and why the argument is being made here rather than in a book nobody opened.",
-    thumb:   "assets/entry-01.jpg"
-  },
+  // ↓ Tonight's re-recorded entry goes here: copy the shape above, uncomment,
+  //   and drop in the new YouTube ID. Until then the page shows its own
+  //   "first entries are being filmed" state, which is the honest one.
 
 ];
